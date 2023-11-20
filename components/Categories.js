@@ -3,7 +3,7 @@ import { Text, View, Pressable, Image, StyleSheet, Platform } from "react-native
 function Categories(props) {
     return (
         <View style={styles.container}>
-            <Pressable android_ripple={{ color: '#ccc' }} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]} onPress={props.onPress.bind(this, props.catID)}>
+            <Pressable android_ripple={{ color: '#ccc' }} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]} onPress={props.onPress.bind(this, props.catID, props.bgColor)}>
                 <View style={[styles.innerContainer, { backgroundColor: props.bgColor }]}>
                     <Image source={props.image} style={styles.image} />
                     <Text style={styles.text}>{props.title}</Text>

@@ -7,8 +7,8 @@ import Categories from "../components/Categories.js";
 
 function CategoriesPage({ navigation }) {
 
-    function onCatePress(catID) {
-        navigation.navigate("mealsPage", { catID: catID });
+    function onCatePress(catID, bgColor) {
+        navigation.navigate("mealsPage", { catID: catID, bgColor: bgColor });
     }
 
     return (

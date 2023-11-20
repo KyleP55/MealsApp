@@ -1,6 +1,6 @@
 import { Text, View, Image, StyleSheet } from "react-native";
 
-function MealPage() {
+function MealPage(props) {
     return (<>
         <View>
             <Text>Meal Title</Text>
