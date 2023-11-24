@@ -3,8 +3,12 @@ import { Text, View, StyleSheet, Pressable, Image } from "react-native";
 function MealsCard(props) {
     const meal = props.meal;
     return (
-        <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : null }]}>
-            <Pressable android_ripple={{ color: '#ccc' }} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}>
+        <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
+            <Pressable
+                android_ripple={{ color: '#ccc' }}
+                style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
+                onPress={props.onPress.bind(this, meal.id)}
+            >
                 <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
                     <View style={styles.whiteBox}>
                         <Image source={{ uri: meal.imageUrl }} style={styles.image} />
@@ -30,7 +34,6 @@ const styles = StyleSheet.create({
         width: "100%",
         marginBottom: 16,
         borderRadius: 8,
-        backgroundColor: 'white',
 
         elevation: 4,
         shadowColor: 'black',
@@ -38,6 +41,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
         overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+        backgroundColor: 'white',
     },
     innerContainer: {
         padding: 8,

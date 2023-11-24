@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import CategoriesPage from './pages/CategoriesPage';
 import MealsPage from './pages/MealsPage';
+import MealPage from './pages/MealPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,16 +14,20 @@ export default function App() {
     <>
       <StatusBar style="dark" />
       <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            contentStyle: { backgroundColor: '#4d3b3b' }
-          }}>
+        <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#4d3b3b' } }}>
           <Stack.Screen
             name="categoriesPage"
             component={CategoriesPage}
             options={{ title: "Categories" }}
           />
-          <Stack.Screen name="mealsPage" component={MealsPage} options={{ title: "Meals List" }} />
+          <Stack.Screen
+            name="mealsPage"
+            component={MealsPage}
+          />
+          <Stack.Screen
+            name="mealPage"
+            component={MealPage}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
