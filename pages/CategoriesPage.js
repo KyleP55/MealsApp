@@ -13,7 +13,6 @@ function CategoriesPage({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Categories</Text>
             <View style={styles.listContainer}>
                 <FlatList
                     data={CATEGORIES}

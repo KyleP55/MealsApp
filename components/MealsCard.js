@@ -3,9 +3,9 @@ import { Text, View, StyleSheet, Pressable, Image } from "react-native";
 function MealsCard(props) {
     const meal = props.meal;
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : null }]}>
             <Pressable android_ripple={{ color: '#ccc' }} style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}>
-                <View style={[styles.innerContainer, { backgroundColor: props.bgColor }]}>
+                <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
                     <View style={styles.whiteBox}>
                         <Image source={{ uri: meal.imageUrl }} style={styles.image} />
                         <View style={styles.mealInfo}>
@@ -29,14 +29,15 @@ const styles = StyleSheet.create({
     container: {
         width: "100%",
         marginBottom: 16,
-        borderWidth: 1,
-        borderColor: 'black',
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 8,
         borderRadius: 8,
-        overflow: 'hidden'
+        backgroundColor: 'white',
+
+        elevation: 4,
+        shadowColor: 'black',
+        shadowOpacity: .25,
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 6,
+        overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
     },
     innerContainer: {
         padding: 8,
@@ -69,6 +70,6 @@ const styles = StyleSheet.create({
         margin: 6,
     },
     buttonPressed: {
-        opacity: 0.5,
+        opacity: Platform.OS === 'android' ? 1 : 0.5,
     }
 });
