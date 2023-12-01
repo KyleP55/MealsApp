@@ -1,13 +1,38 @@
+import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Ionicons } from '@expo/vector-icons';
 
 import CategoriesPage from './pages/CategoriesPage';
 import MealsPage from './pages/MealsPage';
 import MealPage from './pages/MealPage';
+import FavoritesPage from './pages/favoritesPage';
 
 const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+function DrawerNav() {
+  return <Drawer.Navigator
+    screenOptions={{
+      sceneContainerStyle: { backgroundColor: '#4d3b3b' },
+      drawerContentStyle: { backgroundColor: '#5c4c4c' },
+      drawerInactiveTintColor: '#fff',
+      drawerActiveBackgroundColor: '#917474',
+      drawerActiveTintColor: '#fff'
+    }}>
+    <Drawer.Screen name="categoriesPage" component={CategoriesPage} options={{
+      title: 'All Categories',
+      drawerIcon: ({ color, size }) => <Ionicons color={color} size={size} name="list" />
+    }} />
+    <Drawer.Screen name="favoritePage" component={FavoritesPage} options={{
+      title: 'Your Favorites',
+      drawerIcon: ({ color, size }) => <Ionicons color={color} size={size} name="star" />
+    }} />
+  </Drawer.Navigator>;
+}
 
 export default function App() {
   return (
@@ -16,9 +41,12 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#4d3b3b' } }}>
           <Stack.Screen
-            name="categoriesPage"
-            component={CategoriesPage}
-            options={{ title: "Categories" }}
+            name="drawerScreen"
+            component={DrawerNav}
+            options={{
+              title: 'All Categories',
+              headerShown: false,
+            }}
           />
           <Stack.Screen
             name="mealsPage"
@@ -27,11 +55,6 @@ export default function App() {
           <Stack.Screen
             name="mealPage"
             component={MealPage}
-            options={{
-              headerRight: () => {
-                return <Button title={"Add"} />
-              }
-            }}
           />
         </Stack.Navigator>
       </NavigationContainer>
