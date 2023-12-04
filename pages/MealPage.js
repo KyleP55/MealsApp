@@ -1,25 +1,32 @@
-import { useLayoutEffect, useState } from "react";
+import { useContext, useLayoutEffect, useState } from "react";
 import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
 
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import Lists from "../components/Lists";
 import IconButton from "../components/IconButton";
+import { FavoritesContext } from "../store/context/favorites-context";
 
 function MealPage(props) {
+    const favMealContext = useContext(FavoritesContext);
+
     const mealID = props.route.params.mealID;
     const [catList, setCatList] = useState([]);
+    const mealIsFav = favMealContext.ids.includes(mealID);
 
     // Get meal info
     const meal = MEALS.find((x) => x.id == mealID);
+
+    // Page Options
     useLayoutEffect(() => {
         props.navigation.setOptions({
             title: meal.title,
             headerRight: () => {
-                return <IconButton onPress={favHandler} color={"#000000"} />
+                return <IconButton icon={mealIsFav ? 'star' : 'star-outline'} onPress={favHandler} color={"#000000"} />
             }
         });
     }, [props.navigation, favHandler]);
 
+    // Get Categories
     useLayoutEffect(() => {
         for (var i = 0; i < meal.categoryIds.length; i++) {
             for (var I = 0; I < CATEGORIES.length; I++) {
@@ -30,8 +37,13 @@ function MealPage(props) {
         }
     }, [props.navigation, mealID]);
 
-    function favHandler(id) {
-        console.log('added');
+    // Fav Handler
+    function favHandler() {
+        if (mealIsFav) {
+            favMealContext.removeFavorite(mealID);
+        } else {
+            favMealContext.addFavorite(mealID);
+        }
     }
 
     return (<>

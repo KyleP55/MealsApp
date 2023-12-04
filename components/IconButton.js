@@ -3,7 +3,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 function IconButton(props) {
     return <Pressable onPress={props.onPress} style={({ pressed }) => pressed ? styles.pressed : null}>
-        <MaterialIcons name={'favorite-outline'} size={24} color={props.color} />
+        <MaterialIcons name={props.icon} size={24} color={props.color} />
     </Pressable>
 }
 
