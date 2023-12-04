@@ -10,6 +10,7 @@ import CategoriesPage from './pages/CategoriesPage';
 import MealsPage from './pages/MealsPage';
 import MealPage from './pages/MealPage';
 import FavoritesPage from './pages/favoritesPage';
+import FavoritesContextProvider from './store/context/favorites-context';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -38,26 +39,28 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#4d3b3b' } }}>
-          <Stack.Screen
-            name="drawerScreen"
-            component={DrawerNav}
-            options={{
-              title: 'All Categories',
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen
-            name="mealsPage"
-            component={MealsPage}
-          />
-          <Stack.Screen
-            name="mealPage"
-            component={MealPage}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{ contentStyle: { backgroundColor: '#4d3b3b' } }}>
+            <Stack.Screen
+              name="drawerScreen"
+              component={DrawerNav}
+              options={{
+                title: 'All Categories',
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="mealsPage"
+              component={MealsPage}
+            />
+            <Stack.Screen
+              name="mealPage"
+              component={MealPage}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesContextProvider>
     </>
   );
 }
