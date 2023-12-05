@@ -1,7 +1,7 @@
 import { useLayoutEffect } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 
-import MealsCard from "../components/MealsCard.js";
+import MealsList from "../components/MealsList.js"
 
 import { MEALS, CATEGORIES } from '../data/dummy-data.js';
 
@@ -17,27 +17,30 @@ function MealsPage(props) {
         });
     }, [catID, props.navigation]);
 
-    // Get meals in cat
-    const displayedMeals = MEALS.filter((mealItem) => {
-        return mealItem.categoryIds.indexOf(catID) >= 0;
+    // Get Meal Ids in Cat
+    const meals = MEALS.filter((meal) => {
+        return meal.categoryIds.indexOf(catID) >= 0;
     });
+
+    const mealsID = [];
+    for (var i = 0; i < meals.length; i++) {
+        mealsID.push(meals[i].id);
+    }
 
     // Onpress
     function onPressHandler(id) {
+        console.log("in page comp")
         props.navigation.navigate("mealPage", { mealID: id });
     };
+
+    function test() {
+        console.log("test")
+    }
 
 
     return (
         <View style={styles.container}>
-            <View style={styles.listContainer}>
-                <FlatList
-                    data={displayedMeals}
-                    keyExtractor={(item) => item.id}
-                    renderItem={itemData => { return <MealsCard meal={itemData.item} bgColor={bgColor} onPress={onPressHandler} /> }}
-                    style={styles.list}
-                />
-            </View>
+            <MealsList list={mealsID} bgColor={bgColor} onPress={onPressHandler} test={test} />
         </View>
     );
 }
