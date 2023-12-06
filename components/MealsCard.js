@@ -8,14 +8,8 @@ function MealsCard(props) {
     // Get meals in cat
     const meal = MEALS.find((x) => x.id == mealID);
 
-    function test() {
-        props.tester;
-        console.log('start')
-    }
-
     return (
         <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
-            {test()}
             <Pressable
                 android_ripple={{ color: '#ccc' }}
                 style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}

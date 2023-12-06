@@ -1,5 +1,5 @@
 import { useLayoutEffect } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import MealsList from "../components/MealsList.js"
 
@@ -29,18 +29,13 @@ function MealsPage(props) {
 
     // Onpress
     function onPressHandler(id) {
-        console.log("in page comp")
         props.navigation.navigate("mealPage", { mealID: id });
     };
-
-    function test() {
-        console.log("test")
-    }
 
 
     return (
         <View style={styles.container}>
-            <MealsList list={mealsID} bgColor={bgColor} onPress={onPressHandler} test={test} />
+            <MealsList list={mealsID} bgColor={bgColor} onPress={onPressHandler} />
         </View>
     );
 }

@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, button } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -10,6 +10,7 @@ import CategoriesPage from './pages/CategoriesPage';
 import MealsPage from './pages/MealsPage';
 import MealPage from './pages/MealPage';
 import FavoritesPage from './pages/favoritesPage';
+
 import FavoritesContextProvider from './store/context/favorites-context';
 
 const Stack = createNativeStackNavigator();
