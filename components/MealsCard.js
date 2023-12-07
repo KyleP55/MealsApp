@@ -9,26 +9,28 @@ function MealsCard(props) {
     const meal = MEALS.find((x) => x.id == mealID);
 
     return (
-        <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
-            <Pressable
-                android_ripple={{ color: '#ccc' }}
-                style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
-                onPress={props.onPress.bind(this, meal.id)}
-            >
-                <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
-                    <View style={styles.whiteBox}>
-                        <Image source={{ uri: meal.imageUrl }} style={styles.image} />
-                        <View style={styles.mealInfo}>
-                            <Text style={styles.title}>{meal.title}</Text>
-                            <View style={styles.subInfo}>
-                                <Text>Difficulty: {meal.complexity}</Text>
-                                <Text>{meal.affordability}</Text>
-                                <Text>Time: {meal.duration} Mins</Text>
+        <View style={styles.iosShadow}>
+            <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
+                <Pressable
+                    android_ripple={{ color: '#ccc' }}
+                    style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
+                    onPress={props.onPress.bind(this, meal.id)}
+                >
+                    <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
+                        <View style={styles.whiteBox}>
+                            <Image source={{ uri: meal.imageUrl }} style={styles.image} />
+                            <View style={styles.mealInfo}>
+                                <Text style={styles.title}>{meal.title}</Text>
+                                <View style={styles.subInfo}>
+                                    <Text>Difficulty: {meal.complexity}</Text>
+                                    <Text>{meal.affordability}</Text>
+                                    <Text>Time: {meal.duration} Mins</Text>
+                                </View>
                             </View>
                         </View>
                     </View>
-                </View>
-            </Pressable>
+                </Pressable>
+            </View>
         </View>
     );
 };
@@ -38,16 +40,22 @@ export default MealsCard;
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        marginBottom: 16,
         borderRadius: 8,
 
         elevation: 4,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+    },
+    iosShadow: {
+        width: "100%",
         shadowColor: 'black',
-        shadowOpacity: .25,
+        shadowOpacity: .5,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
         overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
-        backgroundColor: 'white',
+        marginBottom: 16,
+        backgroundColor: 'transparent',
+        borderRadius: 8,
     },
     innerContainer: {
         padding: 8,

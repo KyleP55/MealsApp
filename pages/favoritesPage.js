@@ -15,9 +15,8 @@ function FavoritesPage(props) {
 
     return <View style={styles.container}>
         <ScrollView style={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-            <Text style={styles.text}>Your Favorites</Text>
             <FavoritesContextProvider>
-                <MealsList list={favMealContext.ids} bgColor={"#ffe869"} onPress={onPressHandler} />
+                <MealsList list={favMealContext.ids} bgColor={"#00b92e"} onPress={onPressHandler} />
             </FavoritesContextProvider>
         </ScrollView>
     </View>
