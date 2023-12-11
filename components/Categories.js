@@ -2,17 +2,19 @@ import { Text, View, Pressable, Image, StyleSheet, Platform } from "react-native
 
 function Categories(props) {
     return (
-        <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
-            <Pressable
-                android_ripple={{ color: '#ccc' }}
-                style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
-                onPress={props.onPress.bind(this, props.catID, props.bgColor)}
-            >
-                <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
-                    <Text style={styles.text}>{props.title}</Text>
-                </View>
-            </Pressable>
-        </View >
+        <View style={styles.iosShadow}>
+            <View style={[styles.container, { backgroundColor: Platform.OS === 'android' ? props.bgColor : "white" }]}>
+                <Pressable
+                    android_ripple={{ color: '#ccc' }}
+                    style={({ pressed }) => [styles.button, pressed ? styles.buttonPressed : null]}
+                    onPress={props.onPress.bind(this, props.catID, props.bgColor)}
+                >
+                    <View style={[styles.innerContainer, { backgroundColor: Platform.OS === 'android' ? null : props.bgColor }]}>
+                        <Text style={styles.text}>{props.title}</Text>
+                    </View>
+                </Pressable>
+            </View >
+        </View>
     );
 };
 
@@ -26,14 +28,16 @@ const styles = StyleSheet.create({
         margin: 16,
         flex: 1,
         borderRadius: 8,
-
+        overflow: 'hidden',
         elevation: 4,
+        backgroundColor: 'white',
+    },
+    iosShadow: {
         shadowColor: 'black',
         shadowOpacity: .25,
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 6,
-        overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
-        backgroundColor: 'white',
+        flex: 1,
     },
     innerContainer: {
         width: "100%",
