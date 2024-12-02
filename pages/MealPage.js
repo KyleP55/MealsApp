@@ -58,8 +58,8 @@ function MealPage(props) {
                 <View style={styles.subInfo}>
                     <Text style={styles.text}>Difficulty: {meal.complexity}</Text>
                     <Text style={styles.text}>Time: {meal.duration} Mins</Text>
-                    <Text style={styles.text}>Gluten Free?: {meal.isGlutenFree ? "Yes" : "No"}       Lactos Free?: {meal.isLactoseFree ? "Yes" : "No"}</Text>
-                    <Text style={styles.text}>Vegetarian?: {meal.isVegetarian ? "Yes" : "No"}       Vegan?: {meal.isVegan ? "Yes" : "No"}</Text>
+                    <Text style={styles.text}>Gluten Free: {meal.isGlutenFree ? "Yes" : "No"}       Lactos Freer: {meal.isLactoseFree ? "Yes" : "No"}</Text>
+                    <Text style={styles.text}>Vegetarian: {meal.isVegetarian ? "Yes" : "No"}       Vegan: {meal.isVegan ? "Yes" : "No"}</Text>
                     <Text style={styles.subTitle}>Ingredients:</Text>
                     <View style={styles.listContainer}>
                         <Lists data={meal.ingredients} />
